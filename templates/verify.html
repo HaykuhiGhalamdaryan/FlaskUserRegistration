@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verification</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Enter Verification Code</h2>
+    <form action="/verify" method="POST">
+        <label for="code">Verification Code:</label>
+        <input type="text" id="code" name="code" required><br><br>
+        <button onclick="window.location.href='/'">Back</button>
+        <button type="submit">Verify</button>
+    </form>
+    {% if message %}
+        <p style="color:red;">{{ message }}</p>
+    {% endif %}
+</body>
+</html>

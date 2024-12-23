@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Most Common Profession</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Most Common Professions</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Profession</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profession in professions %}
+            <tr>
+                <td>{{ profession['Profession'] }}</td>
+                <td>{{ profession['Count'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="/view-data">Back to Data View</a>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container input[type="text"], 
+        .form-container input[type="email"] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 10px 0;
+            border: 1px solid #ced4da;
+            border-radius: 25px; 
+            background-color: #f4f4f8; 
+            font-size: 16px;
+            color: #495057;
+            transition: all 0.3s;
+        }
+
+        .form-container input[type="text"]:focus,
+        .form-container input[type="email"]:focus {
+            border: 1px solid #6c757d;
+            background-color: #e9ecef;
+            outline: none;
+        } 
+
+        .notice-message {
+            color: #495057;
+            font-size: 14px;
+            margin-top: 1px;
+            padding: 0px 2px; 
+            border-radius: 20px;
+            background-color: #f4f4f8; 
+            display: inline-block;
+            max-width: 100%; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Registration Form</h1>
+
+    <form action="{{url_for('upload')}}"  method="POST" enctype="multipart/form-data">
+        <input name="name" type="text" id="name" placeholder="Name" value="{{ request.form.get('name', '') }}" required>
+        <br><br>
+        <input name="surname" type="text" id="surname" placeholder="Surname" value="{{ request.form.get('surname', '') }}" required>
+        <br><br>
+        <div class="notice-message">Phone number must start with + and contain no more than 11 digits</div><br>
+        <input name="phone" type="text" id="phone" placeholder="Phone" value="{{ request.form.get('phone', '') }}" required><br><br>
+        
+        <input name="email" type="text" id="email" placeholder="Email" value="{{ request.form.get('email', '') }}" required>
+        <br><br>
+        <input name="profession" type="text" id="profession" placeholder="Profession" value="{{ request.form.get('profession', '') }}" required>
+        <br><br>
+
+        {% if message %}
+            <p style="color: red;">{{message}}</p>
+        {% endif %}
+        
+        <input name="send" type="submit" value="Submit" required>
+        <br><br>
+        <button onclick="window.location.href='/view-data'">View Data</button>
+
+    </form>
+
+
+</body>
+</html>
